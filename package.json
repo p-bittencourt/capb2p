@@ -2,11 +2,22 @@
     "cds": {
         "requires": {
             "db": {
-                "kind": "sqlite",
-                "credentials": {
-                    "url": "db.sqlite"
+                "[development]": {
+                    "kind": "sqlite",
+                    "credentials": {
+                        "url": "db.sqlite"
+                    }
+                },
+                "[testing]": {
+                    "kind": "sqlite",
+                    "credentials": {
+                        "url": ":memory:"
+                    }
                 }
             }
         }
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^2.0.2"
     }
 }
