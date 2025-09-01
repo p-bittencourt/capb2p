@@ -1,0 +1,8 @@
+{
+  "comment": "New Order",
+  "Items": [
+    { "pos": 1, "quantity": 10 },
+    { "pos": 2, "quantity": 20 },
+    { "pos": 3, "quantity": 30 }
+  ]
+}
