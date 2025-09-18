@@ -25,4 +25,5 @@ entity OrderItems { // to be accessed through orders only
     key parent : Association to Orders;
     key pos    : Integer;
     quantity   : Integer;
+    book      : Association to Books;
 }
