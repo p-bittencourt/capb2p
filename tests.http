@@ -1,6 +1,11 @@
 ### GET Books
 GET http://localhost:4004/odata/v4/bookshop/Books
 
+### GET LowStock
+GET http://localhost:4004/odata/v4/bookshop/LowStock
+
+### GET Books
+GET http://localhost:4004/odata/v4/bookstock/BooksLowStock
 
 ### GET totalStock
 GET http://localhost:4004/odata/v4/bookshop/totalStock()

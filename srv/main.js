@@ -3,7 +3,7 @@ const logger = cds.log('capb2b')
 
 class Main extends cds.ApplicationService {
 
-    init() {
+    async init() {
         const { Books } = this.entities;
 
         const changeUrgencyDueToSubject = (data) => {
@@ -13,7 +13,7 @@ class Main extends cds.ApplicationService {
                     if (book.title?.toLowerCase().includes('startup')) {
                         book.urgency = 'HIGH'
                     }
-                }) 
+                })
             }
         }
 
@@ -34,13 +34,17 @@ class Main extends cds.ApplicationService {
         this.after('READ', Books, changeUrgencyDueToSubject);
 
         // Function implementation
-        this.on('totalStock', () => 99);
+        this.on('totalStock', async () => {
+            const result = await SELECT.one.from(Books).columns('sum(stock) as total')
+            return result;
+        }
+        );
 
         // This is vital for correct functionality of the generic handlers
         return super.init();
     }
 
-    
+
 }
 
 module.exports = Main;

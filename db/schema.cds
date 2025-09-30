@@ -9,6 +9,7 @@ entity Books : cuid, managed {
     title  : String;
     author : Association to Authors;
     stock  : Integer;
+    price  : Decimal;
 }
 
 entity Authors : cuid {
