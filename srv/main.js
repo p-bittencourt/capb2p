@@ -33,6 +33,9 @@ class Main extends cds.ApplicationService {
 
         this.after('READ', Books, changeUrgencyDueToSubject);
 
+        // Function implementation
+        this.on('totalStock', () => 99);
+
         // This is vital for correct functionality of the generic handlers
         return super.init();
     }
