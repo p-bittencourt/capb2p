@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { SELECT } = require('@sap/cds/lib/ql/cds-ql');
 const logger = cds.log('capb2b')
 
 class Main extends cds.ApplicationService {
@@ -36,9 +37,16 @@ class Main extends cds.ApplicationService {
         // Function implementation
         this.on('totalStock', async () => {
             const result = await SELECT.one.from(Books).columns('sum(stock) as total')
-            return result;
+            return result.total;
         }
         );
+
+        // Bound-function implementation
+        // this.on('getStock','Foo', ({params:[id]}) => stocks[id])
+        this.on('stockValue', Books, async ({params: [id]}) => {
+            const stockValue = await SELECT.from(Books).columns('stock * price as stockValue').where(id);
+            return stockValue;
+        })
 
         // This is vital for correct functionality of the generic handlers
         return super.init();

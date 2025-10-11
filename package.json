@@ -19,5 +19,8 @@
     },
     "devDependencies": {
         "@cap-js/sqlite": "^2.0.2"
+    },
+    "dependencies": {
+        "@cap-js/cds-test": "^0.4.0"
     }
 }
