@@ -42,9 +42,13 @@ class Main extends cds.ApplicationService {
         );
 
         // Bound-function implementation
-        // this.on('getStock','Foo', ({params:[id]}) => stocks[id])
-        this.on('stockValue', Books, async ({params: [id]}) => {
-            const stockValue = await SELECT.from(Books).columns('stock * price as stockValue').where(id);
+        // this.on('getStock','Foo', () => stocks[id])
+        this.on('stockValue', Books, async ({ params: [id] }) => {
+            const stockValue = await SELECT
+                .one()
+                .from(Books)
+                .columns('stock * price as stockValue')
+                .where(id);
             return stockValue;
         })
 
