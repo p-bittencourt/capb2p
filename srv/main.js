@@ -1,5 +1,5 @@
 const cds = require('@sap/cds');
-const { SELECT } = require('@sap/cds/lib/ql/cds-ql');
+const { SELECT, UPDATE } = require('@sap/cds/lib/ql/cds-ql');
 const logger = cds.log('capb2b')
 
 class Main extends cds.ApplicationService {
@@ -50,6 +50,14 @@ class Main extends cds.ApplicationService {
                 .columns('stock * price as stockValue')
                 .where(id);
             return stockValue;
+        })
+
+        // Bound action implementation
+        this.on('setPrice', Books, async req => {
+            const id = req.params[0]; // This id is in object format { ID: '8534bc44-644c-8fa4-195f-0fe8b0c39bda' }
+            const { price } = req.data;
+            await UPDATE(Books, id).with({ price })
+            return await SELECT(Books, id)
         })
 
         // This is vital for correct functionality of the generic handlers

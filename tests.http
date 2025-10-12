@@ -4,11 +4,19 @@ GET http://localhost:4004/odata/v4/bookshop/Books
 ### GET LowStock
 GET http://localhost:4004/odata/v4/bookshop/LowStock
 
-### GET Books
+### GET Books (from uncontinued bookstock service)
 GET http://localhost:4004/odata/v4/bookstock/BooksLowStock
 
-### GET totalStock
+### GET totalStock unbound function
 GET http://localhost:4004/odata/v4/bookshop/totalStock()
 
-### GET Books
+### GET stockValue bound function
 GET http://localhost:4004/odata/v4/bookshop/Books(8534bc44-644c-8fa4-195f-0fe8b0c39bda)/stockValue()  
+
+### POST setPrice bound action
+POST http://localhost:4004/odata/v4/bookshop/Books(8534bc44-644c-8fa4-195f-0fe8b0c39bda)/setPrice
+Content-Type: application/json
+
+{
+    "price": 35.50
+}

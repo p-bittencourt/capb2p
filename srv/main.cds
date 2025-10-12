@@ -12,6 +12,7 @@ service bookshop {
     @cds.redirection.target
     entity Books as projection on org.pbsap.Books actions {
         function stockValue() returns Decimal;
+        action setPrice(price: Books:price) returns Books;
     };
     entity LowStock as select from org.pbsap.Books where stock <=20;
 
